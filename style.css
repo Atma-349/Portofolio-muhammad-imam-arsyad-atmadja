@@ -1,0 +1,727 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Header & Navigation */
+        .header {
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            padding: 0 3%;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            height: 70px;
+            background: rgba(102, 126, 234, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        #logo {
+            height: 120px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header nav {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .header nav a {
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 10px 22px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .header nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hamburger button / sidebar toggle */
+        .nav-toggle {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 46px;
+            height: 46px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            z-index: 1100;
+        }
+
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2.5px;
+            background: white;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-overlay {
+            display: none;
+        }
+
+        #profil {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        #profil:hover {
+            transform: scale(1.1);
+        }
+
+        /* Content */
+        .content {
+            padding-top: 80px;
+            width: 100%;
+        }
+
+        /* Home Section */
+        .section-home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 5% 8%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-home::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+        }
+
+        .home-content {
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .section-home h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            text-transform: capitalize;
+            margin-bottom: 1.5rem;
+            font-family: "Montserrat", sans-serif;
+            line-height: 1.2;
+        }
+
+        .section-home .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .section-home p {
+            font-size: 1.2rem;
+            line-height: 2rem;
+            max-width: 800px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            margin-top: 3rem;
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* About Me Section */
+        .section-about-me {
+            padding: 8% 8%;
+            display: flex;
+            gap: 5rem;
+            align-items: center;
+            background: #f8f9fa;
+        }
+
+        .section-about-me img {
+            width: 400px;
+            height: 400px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .section-about-me img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .deskripsi {
+            flex: 1;
+        }
+
+        .deskripsi h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: #333;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .deskripsi h3 {
+            font-size: 2rem;
+            color: #764ba2;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .deskripsi p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+
+        .skills {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Project Section */
+        .section-project {
+            padding: 8% 8%;
+            background: white;
+        }
+
+        .section-project h1 {
+            font-family: "Montserrat", sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #333;
+            text-transform: capitalize;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            border-radius: 20px;
+            background: #f8f9fa;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-card h3 {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #555;
+            flex: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .project-tag {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #764ba2;
+            background: rgba(118, 75, 162, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #667eea;
+            transition: color 0.3s ease, gap 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #764ba2;
+            gap: 12px;
+        }
+
+        /* Contact Section */
+        .section-contact {
+            padding: 8% 8%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .section-contact h1 {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 4rem;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 800;
+        }
+
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact a {
+            text-decoration: none;
+            color: white;
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .contact i {
+            font-size: 4rem;
+        }
+
+        .contact h6 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll offset */
+        #home, #about, #project, #contact {
+            scroll-margin-top: 80px;
+        }
+
+        /* Responsive Design */
+
+        /* Large desktop tweaks */
+        @media (min-width: 1400px) {
+            .header {
+                padding: 0 6%;
+            }
+
+            .section-home,
+            .section-about-me,
+            .section-project,
+            .section-contact {
+                padding-left: 10%;
+                padding-right: 10%;
+            }
+        }
+
+        /* Tablet */
+        @media (max-width: 992px) {
+            .header nav a {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+
+            .section-home h1 {
+                font-size: 4rem;
+            }
+
+            .deskripsi h1,
+            .section-project h1,
+            .section-contact h1 {
+                font-size: 3rem;
+            }
+
+            .section-about-me {
+                gap: 3rem;
+            }
+
+            .section-about-me img {
+                width: 320px;
+                height: 320px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            #home, #about, #project, #contact {
+                scroll-margin-top: 70px;
+            }
+
+            .header {
+                height: 64px;
+                padding: 0 20px;
+            }
+
+            .header.scrolled {
+                height: 60px;
+            }
+
+            #logo {
+                height: 70px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header nav {
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
+                width: 100%;
+                max-width: none;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 6px;
+                padding: 16px 20px 22px;
+                border-radius: 0 0 20px 20px;
+                background: linear-gradient(160deg, #667eea 0%, #764ba2 100%);
+                backdrop-filter: blur(14px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+                transform: translateY(-120%);
+                opacity: 0;
+                visibility: hidden;
+                transition: transform 0.35s ease, opacity 0.35s ease, visibility 0.35s ease;
+                z-index: 1050;
+                overflow-y: auto;
+            }
+
+            .nav-toggle:checked ~ nav {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .header.scrolled nav {
+                top: 60px;
+            }
+
+            .nav-overlay {
+                display: none;
+            }
+
+            .header nav a {
+                width: 100%;
+                text-align: left;
+                font-size: 1rem;
+                padding: 14px 18px;
+            }
+
+            .nav-toggle:checked ~ .hamburger span:nth-child(1) {
+                transform: translateY(7.5px) rotate(45deg);
+            }
+
+            .nav-toggle:checked ~ .hamburger span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle:checked ~ .hamburger span:nth-child(3) {
+                transform: translateY(-7.5px) rotate(-45deg);
+            }
+
+            .content {
+                padding-top: 64px;
+            }
+
+            .section-home {
+                padding: 15% 6%;
+                min-height: auto;
+                padding-top: 120px;
+                padding-bottom: 90px;
+            }
+
+            .section-home h1 {
+                font-size: 2.6rem;
+            }
+
+            .section-home .subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .section-home p {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                margin-top: 2rem;
+            }
+
+            .btn {
+                text-align: center;
+                width: 100%;
+            }
+
+            .section-about-me {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 18% 6%;
+            }
+
+            .section-about-me img {
+                width: 100%;
+                max-width: 360px;
+                height: auto;
+                box-shadow: 10px 10px 35px rgba(0,0,0,0.15);
+            }
+
+            .deskripsi h1 {
+                font-size: 2.3rem;
+            }
+
+            .deskripsi h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .deskripsi p {
+                font-size: 1rem;
+            }
+
+            .section-project {
+                padding: 18% 6%;
+            }
+
+            .section-project h1 {
+                font-size: 2.3rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-card {
+                padding: 1.6rem;
+            }
+
+            .section-contact {
+                padding: 18% 6%;
+            }
+
+            .section-contact h1 {
+                font-size: 2.3rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .contact {
+                gap: 1.5rem;
+            }
+
+            .contact a {
+                width: 100%;
+                max-width: 320px;
+                height: 180px;
+            }
+
+            .contact i {
+                font-size: 3rem;
+            }
+
+            .footer {
+                padding: 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 420px) {
+            .header {
+                padding: 0 14px;
+            }
+
+            .section-home h1 {
+                font-size: 2.1rem;
+            }
+
+            .section-home .subtitle {
+                font-size: 1.05rem;
+            }
+
+            .section-about-me,
+            .section-project,
+            .section-contact {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .deskripsi h1,
+            .section-project h1,
+            .section-contact h1 {
+                font-size: 2rem;
+            }
+
+            .deskripsi h3 {
+                font-size: 1.25rem;
+            }
+        }
